@@ -21,7 +21,7 @@
                 req.push(this._ress[ress[i]]);
             }
  
-            $.when.apply(null, req).done(callback);
+            return $.when.apply(null, req).done(callback);
         },
  
         getScript: function(url, callback) {
