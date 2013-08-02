@@ -11,14 +11,16 @@
  
             for (var i=0, len=ress.length; i<len; i++) {
  
-                if (!this._ress[ress[i]]) {
-                   if (ress[i].match(/\.js$/)) {
-                    this._ress[ress[i]] = this.getScript(ress[i]);
-                   } else {
-                    this._ress[ress[i]] = this.getCss(ress[i]);
-                   }
+                if (ress[i] != undefined) {
+                    if (!this._ress[ress[i]]) {
+                       if (ress[i].match(/\.js$/)) {
+                        this._ress[ress[i]] = this.getScript(ress[i]);
+                       } else {
+                        this._ress[ress[i]] = this.getCss(ress[i]);
+                       }
+                    }
+                    req.push(this._ress[ress[i]]);
                 }
-                req.push(this._ress[ress[i]]);
             }
  
             return $.when.apply(null, req).done(callback);
