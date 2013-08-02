@@ -11,6 +11,8 @@
  
             for (var i=0, len=ress.length; i<len; i++) {
  
+                if(!ress[i]) continue;
+ 
                 if (!this._ress[ress[i]]) {
                    if (ress[i].match(/\.js$/)) {
                     this._ress[ress[i]] = this.getScript(ress[i]);
