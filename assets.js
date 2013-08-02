@@ -4,7 +4,7 @@
 
         _ress: {},
 
-        require: function(ress, callback) {
+        require: function(ress, callback, failcallback) {
 
             var req  = [],
                 ress = $.isArray(ress) ? ress:[ress];
@@ -23,7 +23,9 @@
                 req.push(this._ress[ress[i]]);
             }
 
-            return $.when.apply(null, req).done(callback);
+            return $.when.apply($, req).done(callback).fail(function(){
+                failcallback ? failcallback() : $.error("Require failed: \n"+ress.join(",\n"));
+            });
         },
 
         getScript: function(url, callback) {
