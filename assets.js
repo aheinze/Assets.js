@@ -14,7 +14,8 @@
                 if(!ress[i]) continue;
 
                 if (!this._ress[ress[i]]) {
-                   if (ress[i].match(/\.js$/)) {
+                   var url = ress[i].split("?")[0];
+                   if (url.match(/\.js$/)) {
                     this._ress[ress[i]] = this.getScript(ress[i]);
                    } else {
                     this._ress[ress[i]] = this.getCss(ress[i]);
